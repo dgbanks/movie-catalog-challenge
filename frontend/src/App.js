@@ -3,7 +3,7 @@ import Header from './header';
 import MovieIndex from './movie_index';
 import MovieDetail from './movie_detail';
 import * as API from './api_utils';
-import './App.css';
+import './stylesheets/App.css';
 
 class App extends React.Component {
   constructor() {
@@ -54,14 +54,20 @@ class App extends React.Component {
           search={this.search}
         />
 
-        {
-          this.state.selected ?
-          <MovieDetail movie={this.state.selected} /> :
-          <MovieIndex
-            movies={this.state.search ? this.state.search : this.state.recent}
-            select={this.select}
-          />
-        }
+        <div className='body'>
+          { this.state.search ? <h3>Search Results:</h3> : <h3>Recently Updated:</h3> }
+
+          {
+            this.state.selected ?
+            <MovieDetail
+              movie={this.state.selected}
+            /> :
+            <MovieIndex
+              movies={this.state.search ? this.state.search : this.state.recent}
+              select={this.select}
+            />
+          }
+        </div>
       </div>
     );
   }

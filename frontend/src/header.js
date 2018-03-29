@@ -27,6 +27,9 @@ class Header extends React.Component {
             value={this.state.query}
             onChange={e => this.update(e)}
           />
+          <button className='new-button'>
+            Add New Movie
+          </button>
         </div>
       </div>
     );
