@@ -36,6 +36,7 @@ class MoviesController < ApplicationController
   end
 
   def search
+    debugger
     render :search
   end
 
