@@ -1,9 +1,20 @@
 import React from 'react';
+import MovieIndexItem from './movie_index_item';
+import './stylesheets/movies.css';
 
 class MovieIndex extends React.Component {
   render() {
     return (
-      <h1>thisisthe INDEX</h1>
+      <div className='index'>
+        {
+          // this.props.movies.map(movie =>
+          //   <MovieIndexItem
+          //     movie={movie}
+          //     select={this.props.select}
+          //   />
+          // )
+        }
+      </div>
     );
   }
 }

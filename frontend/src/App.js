@@ -14,8 +14,21 @@ class App extends React.Component {
     this.search = this.search.bind(this);
   }
 
+  componentDidMount() {
+    console.log('componentDidMount');
+    API.fetchMovies().then(
+      response => {
+        console.log(response);
+      }
+    );
+  }
+
   componentDidUpdate() {
     console.log('componentDidUpdate');
+  }
+
+  getMovies() {
+    console.log('getMovies');
   }
 
   select(movie) {

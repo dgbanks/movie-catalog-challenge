@@ -23,6 +23,8 @@ class Header extends React.Component {
           </div>
           <input
             className='search-bar'
+            placeholder={'Search movies by title...'}
+            value={this.state.query}
             onChange={e => this.update(e)}
           />
         </div>
