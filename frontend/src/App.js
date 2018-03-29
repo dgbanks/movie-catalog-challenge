@@ -18,7 +18,7 @@ class App extends React.Component {
     console.log('componentDidMount');
     API.fetchMovies().then(
       response => {
-        console.log(response);
+        this.setState({ recent: response.data });
       }
     );
   }
@@ -43,6 +43,11 @@ class App extends React.Component {
 
   render() {
     console.log('state', this.state);
+
+    if (!this.state.recent && !this.state.search) {
+      return <div>Loading movies...</div>;
+    }
+
     return (
       <div className="App">
         <Header

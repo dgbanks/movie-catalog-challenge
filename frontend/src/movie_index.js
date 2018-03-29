@@ -7,12 +7,13 @@ class MovieIndex extends React.Component {
     return (
       <div className='index'>
         {
-          // this.props.movies.map(movie =>
-          //   <MovieIndexItem
-          //     movie={movie}
-          //     select={this.props.select}
-          //   />
-          // )
+          this.props.movies.map(movie =>
+            <MovieIndexItem
+              key={movie.id}
+              movie={movie}
+              select={this.props.select}
+            />
+          )
         }
       </div>
     );
