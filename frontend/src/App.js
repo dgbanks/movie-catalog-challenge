@@ -1,18 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import Header from './header';
+import MovieIndex from './movie_index';
+import MovieDetail from './movie_detail';
+import * as API from './api_utils';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+
+    this.select = this.select.bind(this);
+    this.search = this.search.bind(this);
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  select(movie) {
+    this.setState({ selected: movie });
+  }
+
+  search(string) {
+    API.fetchMovies(string).then(
+      movies => this.setState({ search: movies })
+    );
+  }
+
   render() {
+    console.log('state', this.state);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header
+          search={this.search}
+        />
+
+        {
+          this.state.selected ?
+          <MovieDetail movie={this.state.selected} /> :
+          <MovieIndex
+            movies={this.state.search ? this.state.search : this.state.recent}
+            select={this.select}
+          />
+        }
       </div>
     );
   }
