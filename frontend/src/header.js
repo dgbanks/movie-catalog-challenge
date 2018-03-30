@@ -27,7 +27,7 @@ class Header extends React.Component {
             value={this.state.query}
             onChange={e => this.update(e)}
           />
-          <button className='new-button' onClick={this.props.addNew}>
+          <button className='new-button' onClick={()=>this.props.addNew(null)}>
             Add New Movie
           </button>
         </div>

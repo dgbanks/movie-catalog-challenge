@@ -1,0 +1,57 @@
+.form {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.genre div {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+}
+
+.buttons {
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons button {
+  height: 50px;
+  width: 100px;
+  margin: 5px;
+  border: 0px;
+  color: white;
+  font-size: 25px;
+  opacity: .8;
+}
+
+.buttons button:first-child {
+  background-color: green;
+}
+
+.buttons button:last-child {
+  background-color: gray;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+  opacity: 1;
+}

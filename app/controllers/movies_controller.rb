@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.sort_by { |movie| movie.updated_at }.reverse
     render :index
   end
 

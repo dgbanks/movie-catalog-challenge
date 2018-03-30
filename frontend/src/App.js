@@ -17,7 +17,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     API.fetchMovies().then(
       response => {
         this.setState({ recent: response.data });
@@ -27,10 +26,6 @@ class App extends React.Component {
 
   componentDidUpdate() {
     console.log('componentDidUpdate');
-  }
-
-  getMovies() {
-    console.log('getMovies');
   }
 
   select(movie) {
@@ -47,12 +42,30 @@ class App extends React.Component {
     );
   }
 
-  addNew() {
-    this.setState({ new: !this.state.new });
+  addNew(movie) {
+    if (movie) {
+      if (movie.id) {
+        API.editMovie(movie).then(response => console.log(response));
+      } else {
+        API.createMovie(movie).then(response => {
+          const recent = this.state.recent;
+          recent.unshift(response.data);
+          if (recent.length > 10) {
+            recent.pop();
+          }
+          this.setState({
+            new: false,
+            selected: response.data,
+            recent: recent
+          });
+        });
+      }
+    } else {
+      this.setState({ new: !this.state.new });
+    }
   }
 
   render() {
-    console.log('state', this.state);
 
     if (!this.state.recent && !this.state.search) {
       return <div>Loading movies...</div>;
@@ -67,7 +80,7 @@ class App extends React.Component {
 
         <div className='body'>
           {
-            this.state.selected ?
+            this.state.new || this.state.selected ?
               <h3></h3> : this.state.search ?
                 <h3>Search Results:</h3> : <h3>Recently Updated:</h3>
           }
