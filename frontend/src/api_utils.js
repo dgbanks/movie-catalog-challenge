@@ -8,6 +8,10 @@ export const fetchMovies = (query) => {
   }
 };
 
+export const fetchMovie = (movieId) => (
+  axios.get(`http://localhost:3000/movies/${movieId}`)
+);
+
 export const createMovie = movie => (
   axios.post('http://localhost:3000/movies', { movie })
 );

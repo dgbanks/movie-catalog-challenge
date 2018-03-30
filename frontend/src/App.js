@@ -32,7 +32,11 @@ class App extends React.Component {
   }
 
   select(movie) {
-    this.setState({ selected: movie });
+    if (this.state.selected) {
+      this.setState({ selected: null });
+    } else {
+      this.setState({ selected: movie });
+    }
   }
 
   search(string) {
@@ -61,6 +65,8 @@ class App extends React.Component {
             this.state.selected ?
             <MovieDetail
               movie={this.state.selected}
+              select={this.select}
+              fetchMovie={API.fetchMovie}
             /> :
             <MovieIndex
               movies={this.state.search ? this.state.search : this.state.recent}
