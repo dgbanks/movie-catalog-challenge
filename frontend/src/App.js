@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import MovieIndex from './movie_index';
 import MovieDetail from './movie_detail';
+import MovieForm from './movie_form';
 import * as API from './api_utils';
 import './stylesheets/App.css';
 
@@ -12,6 +13,7 @@ class App extends React.Component {
 
     this.select = this.select.bind(this);
     this.search = this.search.bind(this);
+    this.addNew = this.addNew.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +47,10 @@ class App extends React.Component {
     );
   }
 
+  addNew() {
+    this.setState({ new: !this.state.new });
+  }
+
   render() {
     console.log('state', this.state);
 
@@ -56,12 +62,21 @@ class App extends React.Component {
       <div className="App">
         <Header
           search={this.search}
+          addNew={this.addNew}
         />
 
         <div className='body'>
-          { this.state.search ? <h3>Search Results:</h3> : <h3>Recently Updated:</h3> }
+          {
+            this.state.selected ?
+              <h3></h3> : this.state.search ?
+                <h3>Search Results:</h3> : <h3>Recently Updated:</h3>
+          }
 
           {
+            this.state.new ?
+            <MovieForm
+              addNew={this.addNew}
+            /> :
             this.state.selected ?
             <MovieDetail
               movie={this.state.selected}
