@@ -27,29 +27,40 @@ class MovieDetail extends React.Component {
           <button onClick={this.props.toggleForm}>Edit</button>
         </div>
 
-        <div>
+        <div className='title'>
           <h1>{movie.title}</h1>
           {
             movie.imdb_link ? <a href={movie.imdb_link}>View on IMDb</a> : null
           }
         </div>
 
-        {
-          movie.release_date ? <h4>Release: {movie.release_date}</h4> : null
-        }
+        <div className='info'>
+          {
+            movie.release_date ?
+            <div>
+              <h4>Released:</h4>
+              <p>{new Date(movie.release_date).toDateString()}</p>
+            </div>
+            : null
+          }
+
+          {
+            movie.genres.length > 0 ?
+            <div>
+              <h4>Genres:</h4>
+              {movie.genres.map((genre, index) =>
+                <p key={index}>{genre}</p>
+              )}
+            </div> : null
+          }
+        </div>
 
         {
-          movie.genres.length > 0 ?
-          <div>
-            <h4>Genres</h4>
-            {movie.genres.map(genre =>
-              <h3>genre</h3>
-            )}
+          movie.storyline ?
+          <div className='story'>
+            <h4>Synopsis:</h4>
+            <p>{movie.storyline}</p>
           </div> : null
-        }
-
-        {
-          movie.storyline ? <h4>Synopsis: {movie.storyline}</h4> : null
         }
 
       </div>

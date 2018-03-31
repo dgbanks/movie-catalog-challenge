@@ -5,4 +5,15 @@
 .item {
   border: 1px solid black;
   padding: 0px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.item h2 {
+  margin-right: 5px;
+}
+
+.item:hover {
+  cursor: pointer;
+  background-color: rgb(245, 245, 245);
 }

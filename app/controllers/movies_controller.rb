@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all.sort_by { |movie| movie.updated_at }.reverse
+    @movies = Movie.order("updated_at DESC").limit(10)
     render :index
   end
 
@@ -43,6 +43,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :storyline, :release_date, :genres, :imdb_link)
+    params.require(:movie).permit(:title, :storyline, :release_date, :imdb_link, genres: [])
   end
 end

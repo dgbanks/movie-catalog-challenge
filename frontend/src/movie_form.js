@@ -8,7 +8,7 @@ class MovieForm extends React.Component {
     this.updateField = this.updateField.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.movie) {
       const movie = this.props.movie;
       this.setState({
@@ -79,7 +79,7 @@ class MovieForm extends React.Component {
         <label>Storyline
           <textarea
             name='Storyline'
-            value={this.state.storyline}
+            value={this.state.storyline || ''}
             onChange={this.updateField}
           />
         </label>
@@ -88,14 +88,14 @@ class MovieForm extends React.Component {
           <input
             name='Release Date'
             type='date'
-            value={this.state.release_date}
+            value={this.state.release_date || new Date()}
             onChange={this.updateField}/>
         </label>
 
         <label>IMDb Link
           <input
             name='IMDb Link'
-            value={this.state.imdb_link}
+            value={this.state.imdb_link || ''}
             onChange={this.updateField}
           />
         </label>

@@ -1,3 +1,3 @@
 json.array! @movies do |movie|
-  json.extract! movie, :id, :title, :year
+  json.partial! 'movies/movie', movie: movie
 end

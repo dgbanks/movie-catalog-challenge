@@ -29,3 +29,30 @@
   cursor: pointer;
   opacity: 1;
 }
+
+.title {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+}
+
+.info div {
+  display: flex;
+  align-items: center;
+  margin: 0px 0px;
+}
+
+.info p, h4 {
+  margin: 5px 5px;
+}
+
+.story h4, p {
+  margin: 10px 0px;
+}

@@ -7,7 +7,11 @@ class MovieIndexItem extends React.Component {
     return (
       <div className='item' onClick={() => this.props.select(movie)}>
         <h2>{movie.title}</h2>
-        { movie.year ? (<h2>{movie.year}</h2>) : null }
+        {
+          movie.release_date ?
+          <h3>({new Date(movie.release_date).getUTCFullYear()})</h3> :
+          null
+        }
       </div>
     );
   }
