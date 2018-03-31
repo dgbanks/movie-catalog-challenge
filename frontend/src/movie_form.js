@@ -109,6 +109,7 @@ class MovieForm extends React.Component {
                   name='Genre'
                   value={genre}
                   type='checkbox'
+                  checked={this.state.genres.includes(genre)}
                   onChange={this.updateField}
                 />
                 {genre}

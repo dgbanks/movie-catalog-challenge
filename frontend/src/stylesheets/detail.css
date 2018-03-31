@@ -1,5 +1,5 @@
 .detail {
-  border: 1px solid black;
+  padding: 15px;
 }
 
 .options {
@@ -14,6 +14,7 @@
   border: 0px;
   color: white;
   font-size: 25px;
+  border-radius: 10px;
   opacity: .8;
 }
 
@@ -30,16 +31,9 @@
   opacity: 1;
 }
 
-.title {
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .info {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .info div {
@@ -53,5 +47,5 @@
 }
 
 .story h4, p {
-  margin: 10px 0px;
+  margin: 10px 10px;
 }

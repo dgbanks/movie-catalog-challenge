@@ -4,13 +4,22 @@ import './stylesheets/header.css';
 class Header extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { query: ''};
+
+    this.update = this.update.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   update(e) {
-    this.setState({ query: e }.then(
-      () => clearTimeout(setTimeout(this.props.search(), 1000))
-    ));
+    this.setState({ query: e.target.value }, () => {
+      clearTimeout(this.idleTimeout);
+      this.idleTimeout = setTimeout(this.handleSearch, 1000);
+    });
+  }
+
+  handleSearch() {
+    console.log('handling the search');
+    this.props.search(this.state.query);
   }
 
   render() {

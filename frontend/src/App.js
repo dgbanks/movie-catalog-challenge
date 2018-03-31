@@ -44,9 +44,13 @@ class App extends React.Component {
   }
 
   search(string) {
-    API.fetchMovies(string).then(
-      movies => this.setState({ search: movies })
-    );
+    if (string) {
+      API.fetchMovies(string).then(
+        response => this.setState({ search: response.data })
+      );
+    } else {
+      this.setState({ search: [] });
+    }
   }
 
   toggleForm() {
@@ -90,6 +94,8 @@ class App extends React.Component {
       return <div>Loading movies...</div>;
     }
 
+    const validSearch = this.state.search && this.state.search.length > 0;
+
     return (
       <div className="App">
         <Header
@@ -102,7 +108,7 @@ class App extends React.Component {
         <div className='body'>
           {
             this.state.edit || this.state.selected ?
-              <h3></h3> : this.state.search ?
+              <h3></h3> : validSearch ?
                 <h3>Search Results:</h3> : <h3>Recently Updated:</h3>
           }
 
@@ -121,7 +127,7 @@ class App extends React.Component {
               toggleForm={this.toggleForm}
             /> :
             <MovieIndex
-              movies={this.state.search ? this.state.search : this.state.recent}
+              movies={validSearch ? this.state.search : this.state.recent}
               select={this.select}
             />
           }

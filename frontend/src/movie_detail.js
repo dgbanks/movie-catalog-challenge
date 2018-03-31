@@ -27,12 +27,7 @@ class MovieDetail extends React.Component {
           <button onClick={this.props.toggleForm}>Edit</button>
         </div>
 
-        <div className='title'>
-          <h1>{movie.title}</h1>
-          {
-            movie.imdb_link ? <a href={movie.imdb_link}>View on IMDb</a> : null
-          }
-        </div>
+        <h1>{movie.title}</h1>
 
         <div className='info'>
           {
@@ -55,12 +50,15 @@ class MovieDetail extends React.Component {
           }
         </div>
 
+        <div className='story'>
+          <h4>Synopsis:</h4>
+          {
+            movie.storyline ? <p>{movie.storyline}</p> : <p>Synopsis needed</p>
+          }
+        </div>
+
         {
-          movie.storyline ?
-          <div className='story'>
-            <h4>Synopsis:</h4>
-            <p>{movie.storyline}</p>
-          </div> : null
+          movie.imdb_link ? <a href={movie.imdb_link}>View on IMDb</a> : null
         }
 
       </div>

@@ -36,8 +36,8 @@ class MoviesController < ApplicationController
   end
 
   def search
-    debugger
-    render :search
+    @movies = Movie.search(params[:query])
+    render :index
   end
 
   private
