@@ -17,7 +17,7 @@ class Header extends React.Component {
     return (
       <div className='container'>
         <div className='content'>
-          <div className='logo'>
+          <div className='logo' onClick={this.props.logoClick}>
             <h1>LhMDb</h1>
             <h6>Localhost Movie Database</h6>
           </div>
@@ -29,9 +29,16 @@ class Header extends React.Component {
           />
           <button
             className='new-button'
-            style={ this.props.selected ? {display: 'none'} : {} }
             onClick={this.props.toggleForm}
-          >
+            disabled={this.props.selected}
+            style={
+              this.props.selected ? {
+                backgroundColor: '#3d563e',
+                color: 'white',
+                borderColor: 'white',
+                opacity: '.5'
+              } : {}
+            }>
             Add New Movie
           </button>
         </div>

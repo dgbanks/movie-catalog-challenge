@@ -15,6 +15,7 @@ class App extends React.Component {
     this.select = this.select.bind(this);
     this.search = this.search.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
+    this.logoClick = this.logoClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -50,6 +51,10 @@ class App extends React.Component {
 
   toggleForm() {
     this.setState({ edit: !this.state.edit });
+  }
+
+  logoClick() {
+    this.setState({ edit: false, selected: null });
   }
 
   async handleSubmit(movie) {
@@ -91,6 +96,7 @@ class App extends React.Component {
           search={this.search}
           toggleForm={this.toggleForm}
           selected={Boolean(this.state.selected)}
+          logoClick={this.logoClick}
         />
 
         <div className='body'>
