@@ -4,7 +4,7 @@ import './stylesheets/form.css';
 class MovieForm extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {genres: []};
     this.updateField = this.updateField.bind(this);
   }
 
@@ -48,6 +48,8 @@ class MovieForm extends React.Component {
           this.setState({ genres: currentGenres});
         }
         break;
+      default:
+        break;
     }
   }
 
@@ -87,14 +89,14 @@ class MovieForm extends React.Component {
           <input
             name='Release Date'
             type='date'
-            value={this.state.release_date || new Date()}
+            value={this.state.release_date || undefined}
             onChange={this.updateField}/>
         </label>
 
         <label>IMDb Link
           <input
             name='IMDb Link'
-            value={this.state.imdb_link || ''}
+            value={this.state.imdb_link || 'http://www.imdb.com'}
             onChange={this.updateField}
           />
         </label>

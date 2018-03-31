@@ -18,7 +18,6 @@ class Header extends React.Component {
   }
 
   handleSearch() {
-    console.log('handling the search');
     this.props.search(this.state.query);
   }
 

@@ -65,7 +65,7 @@ class App extends React.Component {
     let response;
     let recent = this.state.recent;
     if (typeof(movie) === 'number') {
-      let res = await API.deleteMovie(movie);
+      await API.deleteMovie(movie);
       this.fetchRecent();
     } else {
       if (movie.id) {
@@ -108,7 +108,7 @@ class App extends React.Component {
         <div className='body'>
           {
             this.state.edit || this.state.selected ?
-              <h3></h3> : validSearch ?
+              <h3> </h3> : validSearch ?
                 <h3>Search Results:</h3> : <h3>Recently Updated:</h3>
           }
 
