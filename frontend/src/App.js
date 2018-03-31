@@ -51,19 +51,35 @@ class App extends React.Component {
   async handleSubmit(movie) {
     let response, recent;
     if (typeof(movie) === 'number') {
-      await API.deleteMovie(movie);
+      let res = await API.deleteMovie(movie);
+      console.log(res);
+      recent = this.state.recent;
+      recent = recent.filter(movie => movie.id !== res.data.id);
     } else if (movie.id) {
       response = await API.editMovie(movie);
+      recent = this.state.recent;
+      recent.map(movie => {
+        if (movie.id === response.data.id) {
+          return response.data;
+        } else {
+          return movie;
+        }
+      });
     } else {
       response = await API.createMovie(movie);
+      recent = this.state.recent;
+      recent.unshift(response.data);
+      if (recent.length > 10) {
+        recent.pop();
+      }
     }
     if (response) {
       response = response.data;
     }
-    this.fetchRecent();
     this.setState({
       edit: false,
-      selected: response
+      selected: response,
+      recent: recent
     });
   }
 
