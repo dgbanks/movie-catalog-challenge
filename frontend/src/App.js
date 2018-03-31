@@ -50,29 +50,20 @@ class App extends React.Component {
 
   async handleSubmit(movie) {
     let response, recent;
-    if (movie.id) {
+    if (typeof(movie) === 'number') {
+      await API.deleteMovie(movie);
+    } else if (movie.id) {
       response = await API.editMovie(movie);
-      console.log(response);
-      recent = this.state.recent;
-      recent.map(movie => {
-        if (movie.id === response.data.id) {
-          console.log('FOUNDMATCH');
-          return response.data
-        }
-      });
     } else {
       response = await API.createMovie(movie);
-      recent = this.state.recent;
-      recent.unshift(response.data);
-      if (recent.length > 10) {
-        recent.pop();
-      }
     }
-    console.log(response);
+    if (response) {
+      response = response.data;
+    }
+    this.fetchRecent();
     this.setState({
       edit: false,
-      selected: response.data,
-      recent: recent
+      selected: response
     });
   }
 

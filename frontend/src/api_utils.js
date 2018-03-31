@@ -21,5 +21,5 @@ export const editMovie = movie => (
 );
 
 export const deleteMovie = movieId => (
-  axios.delete('http://localhost:3000/movies/${movieId}')
+  axios.delete(`http://localhost:3000/movies/${movieId}`)
 );
