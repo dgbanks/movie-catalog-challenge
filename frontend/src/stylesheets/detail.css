@@ -1,0 +1,31 @@
+.detail {
+  border: 1px solid black;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options button {
+  height: 50px;
+  width: 100px;
+  border: 0px;
+  color: white;
+  font-size: 25px;
+  opacity: .8;
+}
+
+.options button:first-child {
+  background-color: gray;
+}
+
+.options button:last-child {
+  background-color: green;
+}
+
+.options button:hover {
+  cursor: pointer;
+  opacity: 1;
+}

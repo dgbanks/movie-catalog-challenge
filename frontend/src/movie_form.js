@@ -5,6 +5,7 @@ class MovieForm extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.updateField = this.updateField.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,32 @@ class MovieForm extends React.Component {
   }
 
   updateField(e) {
-    console.log(new Date(e.target.value));
+    switch (e.target.name) {
+      case 'Title':
+        this.setState({ title: e.target.value });
+        break;
+      case 'Storyline':
+        this.setState({ storyline: e.target.value });
+        break;
+      case 'Release Date':
+        this.setState({ release_date: e.target.value });
+        break;
+      case 'IMDb Link':
+        this.setState({ imdb_link: e.target.value });
+        break;
+      case 'Genre':
+        const newGenre = e.target.value;
+        const currentGenres = this.state.genres || [];
+        if (currentGenres.includes(newGenre)) {
+          this.setState({ genres: currentGenres.filter(genre =>
+            genre !== newGenre
+          )});
+        } else {
+          currentGenres.push(newGenre);
+          this.setState({ genres: currentGenres});
+        }
+        break;
+    }
   }
 
   handleCheckbox(e) {
@@ -36,10 +62,6 @@ class MovieForm extends React.Component {
     }
   }
 
-  submitForm() {
-
-  }
-
   render() {
     console.log(this.state);
 
@@ -48,26 +70,33 @@ class MovieForm extends React.Component {
 
         <label>Title
           <input
-            onChange={e => this.setState({title: e.target.value})}
+            name='Title'
+            value={this.state.title}
+            onChange={this.updateField}
           />
         </label>
 
         <label>Storyline
           <textarea
-            onChange={e => this.setState({storyline: e.target.value})}
+            name='Storyline'
+            value={this.state.storyline}
+            onChange={this.updateField}
           />
         </label>
 
         <label>Release Date
           <input
+            name='Release Date'
             type='date'
-            onChange={e => this.setState({ release_date: new Date(e.target.value) })}
-          />
+            value={this.state.release_date}
+            onChange={this.updateField}/>
         </label>
 
         <label>IMDb Link
           <input
-            onChange={e => this.setState({imdb_link: e.target.value})}
+            name='IMDb Link'
+            value={this.state.imdb_link}
+            onChange={this.updateField}
           />
         </label>
 
@@ -77,9 +106,10 @@ class MovieForm extends React.Component {
             genres.map((genre, index) =>
               <label key={index} className='checkbox'>
                 <input
+                  name='Genre'
                   value={genre}
                   type='checkbox'
-                  onChange={e => this.handleCheckbox(e)}
+                  onChange={this.updateField}
                 />
                 {genre}
               </label>
@@ -89,13 +119,16 @@ class MovieForm extends React.Component {
         </label>
 
         <div className='buttons'>
-          <button
-            disabled={Boolean(!this.state.title)}
-            style={ this.state.title ? {} : {backgroundColor:'lightgray'}}
-            onClick={() => this.props.addNew(this.state)}>
-            Save
-          </button>
-          <button onClick={() => this.props.addNew(null)}>Cancel</button>
+          <button disabled={Boolean(!this.state.title)}
+            style={ this.state.title ? {} : { backgroundColor:'lightgray' }}
+            onClick={() => this.props.handleSubmit(this.state)}
+          >Save</button>
+
+          <button style={ this.state.id ? {} : { display: 'none'} }
+            onClick={() => this.props.handleSubmit(this.state.id)}
+          >Delete</button>
+
+          <button onClick={this.props.toggleForm}>Cancel</button>
         </div>
 
       </div>

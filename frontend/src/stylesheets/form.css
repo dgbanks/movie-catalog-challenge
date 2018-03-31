@@ -47,6 +47,10 @@ textarea {
   background-color: green;
 }
 
+.buttons button:nth-child(2) {
+  background-color: red;
+}
+
 .buttons button:last-child {
   background-color: gray;
 }
