@@ -1,24 +1,16 @@
-# README
+# Movie Catalog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Setup
+  * Clone this repo
+  * inside root directory: run ```bundle install```, ```rails db:setup```, and ```rails s```
+  * inside ```/frontend```: run ```npm install```, ```npm start```, and then answer ```Y``` to the terminal prompt:
 
-Things you may want to cover:
+  ```
+  ? Something is already running on port 3000. Probably:
+  puma 3.11.3 (tcp://0.0.0.0:3000) [movie_catalog]   (pid #####)
+  in /path/to/movie_catalog
 
-* Ruby version
+  Would you like to run the app on another port instead? (Y/n)
+  ```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * this should launch ```localhost:3001``` in your browser
