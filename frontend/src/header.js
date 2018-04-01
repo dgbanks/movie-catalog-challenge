@@ -13,7 +13,7 @@ class Header extends React.Component {
   update(e) {
     this.setState({ query: e.target.value }, () => {
       clearTimeout(this.idleTimeout);
-      this.idleTimeout = setTimeout(this.handleSearch, 1000);
+      this.idleTimeout = setTimeout(this.handleSearch, 500);
     });
   }
 

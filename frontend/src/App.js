@@ -46,10 +46,10 @@ class App extends React.Component {
   search(string) {
     if (string) {
       API.fetchMovies(string).then(
-        response => this.setState({ search: response.data })
+        response => this.setState({ query: string, search: response.data })
       );
     } else {
-      this.setState({ search: [] });
+      this.setState({ query: '', search: [] });
     }
   }
 
@@ -94,7 +94,7 @@ class App extends React.Component {
       return <div>Loading movies...</div>;
     }
 
-    const validSearch = this.state.search && this.state.search.length > 0;
+    const validSearch = this.state.search && this.state.query;
 
     return (
       <div className="App">
@@ -107,9 +107,17 @@ class App extends React.Component {
 
         <div className='body'>
           {
-            this.state.edit || this.state.selected ?
-              <h3> </h3> : validSearch ?
-                <h3>Search Results:</h3> : <h3>Recently Updated:</h3>
+            this.state.edit || this.state.selected ? 
+            <h3> </h3> :
+            validSearch ? (
+              this.state.search.length === 0 ?
+              <h3>No Matches Found</h3> :
+              <h3>Search Results:</h3>
+            ) : (
+              this.state.recent.length > 0 ?
+              <h3>Recently Updated:</h3> :
+              <h3>No Movies Found</h3>
+            )
           }
 
           {
